@@ -104,9 +104,9 @@ const Group: React.FC = () => {
         </div>
       </header>
 
-      <div className={`group-content ${isCreatingGroup ? 'creating-group' : ''}`}>
+      <div className="group-content">
         {isCreatingGroup && (
-          <div className="create-group-form">
+          <div className={`create-group-form ${isCreatingGroup ? 'show-create-group' : 'hide-create-group'}`}>
             <p className='create-new-group-heading'>Create a New Group</p>
             <form className='group-form-container' onSubmit={handleFormSubmit}>
               <input

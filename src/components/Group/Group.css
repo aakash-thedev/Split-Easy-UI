@@ -56,30 +56,21 @@
 
 .group-content {
   display: flex;
-  transition: all 0.3s ease-in-out;
   flex: 1;
-}
-
-.creating-group .group-list {
-  flex: 1;
-  border-right: 1px solid #ddd;
-}
-
-.creating-group .create-group-form {
-  flex: 1;
-  display: block;
 }
 
 .create-group-form {
-  flex: 0;
-  display: none;
-  transition: all 0.3s ease-in-out;
   border-right: 1px solid rgb(214, 214, 214);
   padding: 0 24px;
+  transition: transform 0.5s ease-in-out;
 }
 
-.create-group-form h2 {
-  margin-bottom: 16px;
+.create-group-form.hide-create-group {
+  transform: translateX(-100%);
+}
+
+.create-group-form.show-create-group {
+  transform: translateX(0);
 }
 
 .create-group-submit-button {
