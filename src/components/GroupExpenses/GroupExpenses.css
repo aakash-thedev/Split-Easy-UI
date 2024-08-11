@@ -1,0 +1,38 @@
+.group-details-container {
+  border: 1px solid rgb(214, 214, 214);
+  min-width: 1000px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+}
+
+.group-details-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.group-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.group-details-header-top {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(214, 214, 214);
+}
+
+.group-details-header-bottom {
+  padding: 12px 24px;
+  width: 100%;
+}
+
+.group-details-description {
+  color: grey;
+}
+
+.group-details-members {
+  margin-top: 8px;
+}

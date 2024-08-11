@@ -60,6 +60,7 @@
 }
 
 .create-group-form {
+  min-width: 440px;
   border-right: 1px solid rgb(214, 214, 214);
   padding: 0 24px;
   transition: transform 0.5s ease-in-out;
