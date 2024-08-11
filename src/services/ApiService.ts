@@ -19,6 +19,7 @@ const ApiService = (() => {
     });
     customApiService.interceptors.response.use(
       (response) => {
+        console.log("RESPONSE", response.status);
         if (response.status === 401) {
           removeCookie(JWT_TOKEN);
           localStorage.removeItem('jwtToken');

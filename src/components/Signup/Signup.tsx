@@ -55,6 +55,7 @@ const SignUp: React.FC = () => {
         <input
           type="text"
           name="name"
+          className="signup-input"
           value={state.name}
           onChange={handleChange}
           placeholder="Name"
@@ -62,6 +63,7 @@ const SignUp: React.FC = () => {
         <input
           type="email"
           name="email"
+          className="signup-input"
           value={state.email}
           onChange={handleChange}
           placeholder="Email"
@@ -69,6 +71,7 @@ const SignUp: React.FC = () => {
         <input
           type="password"
           name="password"
+          className="signup-input"
           value={state.password}
           onChange={handleChange}
           placeholder="Password"

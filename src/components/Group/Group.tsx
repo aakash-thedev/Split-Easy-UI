@@ -3,6 +3,7 @@ import './Group.css';
 import { IGroup } from '../../models/Group';
 import ApiService from '../../services/ApiService';
 import CustomDropdown, { ICustomDropdownOption } from '../CustomDropdown/CustomDropdown';
+import { GROUP_CATEGORIES, GROUP_CATEGORY_PROPERTIES } from '../../constants/GroupCategories';
 
 const Group: React.FC = () => {
   const [groups, setGroups] = useState<IGroup[]>([]);
@@ -11,6 +12,7 @@ const Group: React.FC = () => {
   const [selectedUsers, setSelectedUsers] = useState<ICustomDropdownOption[]>([]);
   const [currentGroupName, setCurrentGroupName] = useState('');
   const [currentGroupDescription, setCurrentGroupDescription] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   useEffect(() => {
     fetchGroups().then((r) => {
@@ -61,6 +63,7 @@ const Group: React.FC = () => {
     const newGroupData = {
       groupName: currentGroupName,
       groupDescription: currentGroupDescription,
+      categories: selectedCategories,
       memberIds: selectedUsers.map((user) => user._id)
     };
 
@@ -71,10 +74,21 @@ const Group: React.FC = () => {
 
       setIsCreatingGroup(false);
       setSelectedUsers([]);
+      setSelectedCategories([]);
     } catch (error) {
       console.error('Error creating group:', error);
     }
   };
+
+  const handleCategorySelection = (category: string) => {
+    if (selectedCategories.includes(category)) {
+      const updatedSelectedCategories = selectedCategories.filter((c) => c != category);
+      setSelectedCategories(updatedSelectedCategories);
+    } else {
+      const updatedSelectedCategories = [...selectedCategories, category];
+      setSelectedCategories(updatedSelectedCategories);
+    }
+  }
 
   return (
     <div className="group-container">
@@ -94,7 +108,7 @@ const Group: React.FC = () => {
         {isCreatingGroup && (
           <div className="create-group-form">
             <p className='create-new-group-heading'>Create a New Group</p>
-            <form onSubmit={handleFormSubmit}>
+            <form className='group-form-container' onSubmit={handleFormSubmit}>
               <input
                 type="text"
                 name="groupName"
@@ -102,12 +116,25 @@ const Group: React.FC = () => {
                 required
                 onChange={(e) => setCurrentGroupName(e.target.value)}
               />
-              <input
-                type="text"
+              <textarea
                 name="groupDescription"
-                placeholder="Group Description ( Optional )"
+                placeholder="Group Description"
                 onChange={(e) => setCurrentGroupDescription(e.target.value)}
               />
+
+              <div className='group-categories'>
+                {
+                  GROUP_CATEGORIES.map((category, categoryIndex) => {
+                    return (
+                      <div
+                        className={`category-pill ${selectedCategories.includes(category) ? 'group-category-selected' : ''}`}
+                        onClick={() => handleCategorySelection(category)}
+                        key={categoryIndex}
+                      > {category} </div>
+                    )
+                  })
+                }
+              </div>
 
               <div className="members-section">
                 <CustomDropdown
@@ -117,6 +144,21 @@ const Group: React.FC = () => {
                   onSelection={handleUserSelect}
                   key="custom-users-selection-dropdown"
                 />
+
+                <div className='selected-members-section'>
+                  {
+                    selectedUsers.length > 0 && selectedUsers.map((user, selectedUserIndex) => {
+                      return (
+                        <div
+                          key={selectedUserIndex}
+                          className="selected-member-pill"
+                        >
+                          {user.name}
+                        </div>
+                      )
+                    })
+                  }
+                </div>
               </div>
 
               <button className='create-group-submit-button' type="submit">Submit</button>
@@ -135,7 +177,19 @@ const Group: React.FC = () => {
                 </div>
 
                 <div className='group-row-right'>
-
+                  {
+                    group.categories.map((category, groupCategoryIndex) => {
+                      return (
+                        <div
+                          key={groupCategoryIndex}
+                          className="group-category-tag"
+                          style={{ background: GROUP_CATEGORY_PROPERTIES[category].backgroundColor }}
+                        >
+                          {category}
+                        </div>
+                      )
+                    })
+                  }
                 </div>
               </div>
             ))}

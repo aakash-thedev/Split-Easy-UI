@@ -5,5 +5,6 @@ export interface IGroup {
   name: string;
   description: string;
   coverImageUrl: string;
+  categories: string[];
   members: IUser[];
 }

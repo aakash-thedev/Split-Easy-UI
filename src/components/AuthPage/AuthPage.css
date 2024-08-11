@@ -46,19 +46,36 @@ form {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* padding: 0 50px; */
   height: inherit;
   text-align: center;
   box-sizing: border-box;
 }
 
 input {
-  background-color: #eee;
-  border: none;
+  border: 1px solid rgb(200, 200, 200);
   box-sizing: border-box;
   padding: 12px 15px;
-  margin: 8px 0;
   width: 100%;
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea {
+  font-family: arial, sans-serif;
+  border: 1px solid rgb(200, 200, 200);
+  box-sizing: border-box;
+  padding: 12px 15px;
+  width: 100%;
+  border-radius: 4px;
+  min-height: 100px;
+  max-height: 100px;
+}
+
+textarea:focus {
+  outline: none;
 }
 
 .container {

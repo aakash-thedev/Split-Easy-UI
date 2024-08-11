@@ -1,9 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Sidenav from "../components/Sidenav/Sidenav";
+import { getCookie, JWT_TOKEN } from "../services/cookieService";
 import routes from "./Routes";
 
 const AvailableRoutes = () => {
-  const isUserAuthenticated = localStorage.getItem('token');
+  const isUserAuthenticated = getCookie(JWT_TOKEN);
 
   if (isUserAuthenticated) {
     return (

@@ -47,17 +47,19 @@ const Login: React.FC = () => {
   return (
     <div className="form-container login-container">
       <form className="login-form" onSubmit={handleLogin}>
-        <h1 className="login-heading">LOGIN</h1>
+        <h1 className="login-heading">Login</h1>
         <input
           type="email"
           placeholder="Email"
           name="email"
+          className="login-input"
           value={state.email}
           onChange={handleChange}
         />
         <input
           type="password"
           name="password"
+          className="login-input"
           placeholder="Password"
           value={state.password}
           onChange={handleChange}

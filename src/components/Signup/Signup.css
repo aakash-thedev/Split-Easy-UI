@@ -17,6 +17,10 @@
   padding: 0 24px;
 }
 
+.signup-input {
+  margin: 8px 0;
+}
+
 .container.right-panel-active .sign-up-container {
   transform: translateX(100%);
   opacity: 1;

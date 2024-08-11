@@ -83,12 +83,27 @@
 }
 
 .create-group-submit-button {
-  margin-top: 12px;
+  margin-top: 20px;
+  border-radius: 6px !important;
+  cursor: pointer;
+}
+
+.create-new-group-heading {
+  font-size: 12px;
+  color: grey;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.group-form-container {
+  gap: 20px;
 }
 
 .group-list-heading {
-  box-sizing: border-box;
-  padding: 12px 36px;
+  font-size: 12px;
+  color: grey;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .group-list {
@@ -96,13 +111,55 @@
   padding: 0 24px;
 }
 
+.group-categories {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.category-pill {
+  border: 1px solid rgb(200, 200, 200);
+  font-size: 12px;
+  border-radius: 6px;
+  color: grey;
+  padding: 10px 20px;
+}
+
+.group-category-selected {
+  color: white !important;
+  background-color: #e43434;
+  font-weight: bold;
+  border: none;
+}
+
 .members-section {
   width: 100%;
-  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .members-section li input[type="checkbox"] {
   margin-right: 10px;
+}
+
+.selected-members-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.selected-member-pill {
+  font-size: 10px;
+  border-radius: 6px;
+  padding: 10px 20px;
+  color: white !important;
+  background-color: #e43434;
+  font-weight: bold;
 }
 
 .group-list-container {
@@ -115,6 +172,14 @@
   border: 1px solid rgb(231, 231, 231);
   padding: 16px 24px;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.group-row:hover {
+  background-color: #c8dbef34;
+  cursor: pointer;
 }
 
 .group-row-left {
@@ -131,4 +196,24 @@
 .group-description {
   font-size: 14px;
   color: rgb(116, 116, 116);
+  max-width: 364px;
+}
+
+.group-row-right {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  max-width: 250px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.group-category-tag {
+  font-size: 12px;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

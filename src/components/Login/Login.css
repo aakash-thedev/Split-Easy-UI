@@ -19,6 +19,10 @@
   padding: 0 24px;
 }
 
+.login-input {
+  margin: 8px 0;
+}
+
 .container.right-panel-active .login-container {
   transform: translateX(100%);
 }

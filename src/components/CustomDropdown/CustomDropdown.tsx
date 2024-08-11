@@ -57,7 +57,7 @@ const CustomDropdown: React.FC<ICustomDropdown> = ({ placeholder, options, multi
 
   return (
     <div>
-      <FormControl className='custom-dropdown' sx={{ m: 1, width: '200px', mt: 3 }}>
+      <FormControl className='custom-dropdown' sx={{ m: 1, width: '200px' }}>
         <Select
           multiple={multipleSelect}
           displayEmpty
