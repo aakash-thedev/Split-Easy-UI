@@ -4,8 +4,10 @@ import { IGroup } from '../../models/Group';
 import ApiService from '../../services/ApiService';
 import CustomDropdown, { ICustomDropdownOption } from '../CustomDropdown/CustomDropdown';
 import { GROUP_CATEGORIES, GROUP_CATEGORY_PROPERTIES } from '../../constants/GroupCategories';
+import { useNavigate } from 'react-router-dom';
 
 const Group: React.FC = () => {
+  const navigate = useNavigate();
   const [groups, setGroups] = useState<IGroup[]>([]);
   const [users, setUsers] = useState<ICustomDropdownOption[]>([]);
   const [isCreatingGroup, setIsCreatingGroup] = useState(false);
@@ -170,7 +172,11 @@ const Group: React.FC = () => {
           <p className='group-list-heading'>Your Groups</p>
           <div className='group-list-container'>
             {groups.map((group, index) => (
-              <div key={index} className="group-row">
+              <div
+                key={index}
+                className="group-row"
+                onClick={() => navigate(`/group/${group._id}/expenses`)}
+              >
                 <div className='group-row-left'>
                   <span className='group-name'> {group.name} </span>
                   <span className='group-description'> {group.description} </span>

@@ -3,6 +3,7 @@ import Activity from "../components/Activity/Activity";
 import AuthPage from "../components/AuthPage/AuthPage";
 import Friends from "../components/Friends/Friends";
 import Group from "../components/Group/Group";
+import GroupExpenses from "../components/GroupExpenses/GroupExpenses";
 import Premium from "../components/Premium/Premium";
 import Settings from "../components/Settings/Settings";
 
@@ -15,6 +16,11 @@ const routes = [
   {
     path: "/groups",
     Component: Group,
+    protected: true,
+  },
+  {
+    path: "/group/:id/expenses",
+    Component: GroupExpenses,
     protected: true,
   },
   {

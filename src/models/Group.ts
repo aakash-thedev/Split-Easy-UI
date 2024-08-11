@@ -1,7 +1,7 @@
 import { IUser } from "./User";
 
 export interface IGroup {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   coverImageUrl: string;
