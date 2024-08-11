@@ -1,0 +1,134 @@
+.group-container {
+  border: 1px solid rgb(214, 214, 214);
+  min-width: 1000px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+}
+
+.group-header {
+  padding: 8px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid rgb(214, 214, 214);
+}
+
+.group-header h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.group-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: #666;
+  padding: 8px 16px;
+  height: 40px;
+  width: 150px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.create-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.group-content {
+  display: flex;
+  transition: all 0.3s ease-in-out;
+  flex: 1;
+}
+
+.creating-group .group-list {
+  flex: 1;
+  border-right: 1px solid #ddd;
+}
+
+.creating-group .create-group-form {
+  flex: 1;
+  display: block;
+}
+
+.create-group-form {
+  flex: 0;
+  display: none;
+  transition: all 0.3s ease-in-out;
+  border-right: 1px solid rgb(214, 214, 214);
+  padding: 0 24px;
+}
+
+.create-group-form h2 {
+  margin-bottom: 16px;
+}
+
+.create-group-submit-button {
+  margin-top: 12px;
+}
+
+.group-list-heading {
+  box-sizing: border-box;
+  padding: 12px 36px;
+}
+
+.group-list {
+  flex: 1;
+  padding: 0 24px;
+}
+
+.members-section {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.members-section li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.group-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.group-row {
+  border: 1px solid rgb(231, 231, 231);
+  padding: 16px 24px;
+  border-radius: 8px;
+}
+
+.group-row-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.group-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.group-description {
+  font-size: 14px;
+  color: rgb(116, 116, 116);
+}
