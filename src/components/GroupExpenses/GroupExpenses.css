@@ -140,6 +140,7 @@
   flex-direction: column;
   gap: 12px;
   max-height: 530px;
+  overflow: scroll;
 }
 
 .loader-screen {
@@ -167,6 +168,8 @@
   overflow: scroll;
   max-height: 540px;
   font-size: 14px;
+  color: grey;
+  line-height: 26px;
 }
 
 .split-options {
@@ -181,6 +184,7 @@
   margin-right: 10px;
   color: rgb(95, 177, 248);
   border-radius: 4px;
+  font-size: 12px;
 }
 
 .split-option.selected {
@@ -215,4 +219,5 @@
   margin-top: 16px;
   background-color: rgb(95, 177, 248);
   border: none;
+  font-size: 14px;
 }

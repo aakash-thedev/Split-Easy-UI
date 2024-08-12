@@ -246,6 +246,7 @@ const GroupExpenses: React.FC = () => {
         {
           loadResult && (
             <div className="loader-screen">
+              <span style={{ color: 'grey', fontSize: '10px' }}> AI is settling up you expenses.... </span>
               <CircularProgress />
             </div>
           )
