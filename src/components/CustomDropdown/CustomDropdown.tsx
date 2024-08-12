@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import './CustomDropdown.css'
+import { useEffect } from 'react';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -37,11 +38,16 @@ export interface ICustomDropdown {
   options: ICustomDropdownOption[];
   multipleSelect: boolean;
   onSelection?: (val: ICustomDropdownOption[]) => void;
+  resetSelection?: boolean;
 }
 
-const CustomDropdown: React.FC<ICustomDropdown> = ({ placeholder, options, multipleSelect, onSelection }) => {
+const CustomDropdown: React.FC<ICustomDropdown> = ({ placeholder, options, multipleSelect, onSelection, resetSelection }) => {
   const theme = useTheme();
   const [selectedOptions, setSelectedOptions] = React.useState<ICustomDropdownOption[]>([]);
+
+  useEffect(() => {
+    setSelectedOptions([]);
+  }, [resetSelection])
 
   const handleChange = (event: SelectChangeEvent<string[]>) => {
     const value = event.target.value;

@@ -5,6 +5,7 @@ import ApiService from '../../services/ApiService';
 import CustomDropdown, { ICustomDropdownOption } from '../CustomDropdown/CustomDropdown';
 import { GROUP_CATEGORIES, GROUP_CATEGORY_PROPERTIES } from '../../constants/GroupCategories';
 import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Group: React.FC = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Group: React.FC = () => {
   const [currentGroupName, setCurrentGroupName] = useState('');
   const [currentGroupDescription, setCurrentGroupDescription] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [loadingGroups, setLoadingGroups] = useState(false);
 
   useEffect(() => {
     fetchGroups().then((r) => {
@@ -39,8 +41,12 @@ const Group: React.FC = () => {
 
   const fetchGroups = async () => {
     try {
+      setLoadingGroups(true);
       const { data } = await ApiService().client.get('http://localhost:8080/api/groups/fetchUserGroups');
       setGroups(data.groups);
+      setTimeout(() => {
+        setLoadingGroups(false);
+      }, 500);
     } catch (error) {
       console.error('Error fetching groups:', error);
     }
@@ -170,36 +176,48 @@ const Group: React.FC = () => {
 
         <div className="group-list">
           <p className='group-list-heading'>Your Groups</p>
-          <div className='group-list-container'>
-            {groups.map((group, index) => (
-              <div
-                key={index}
-                className="group-row"
-                onClick={() => navigate(`/group/${group._id}/expenses`)}
-              >
-                <div className='group-row-left'>
-                  <span className='group-name'> {group.name} </span>
-                  <span className='group-description'> {group.description} </span>
-                </div>
+          {!loadingGroups &&
+            (<div className='group-list-container'>
+              {groups.map((group, index) => (
+                <div
+                  key={index}
+                  className="group-row"
+                  onClick={() => navigate(`/group/${group._id}/expenses`)}
+                >
+                  <div className='group-row-left'>
+                    <span className='group-name'> {group.name} </span>
+                    <span className='group-description'> {group.description} </span>
+                  </div>
 
-                <div className='group-row-right'>
-                  {
-                    group.categories.map((category, groupCategoryIndex) => {
-                      return (
-                        <div
-                          key={groupCategoryIndex}
-                          className="group-category-tag"
-                          style={{ background: GROUP_CATEGORY_PROPERTIES[category].backgroundColor }}
-                        >
-                          {category}
-                        </div>
-                      )
-                    })
-                  }
+                  <div className='group-row-right'>
+                    {
+                      group.categories.map((category, groupCategoryIndex) => {
+                        return (
+                          <div
+                            key={groupCategoryIndex}
+                            className="group-category-tag"
+                            style={{ background: GROUP_CATEGORY_PROPERTIES[category].backgroundColor }}
+                          >
+                            {category}
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
                 </div>
+              ))}
+            </div>
+            )
+          }
+
+          {
+            loadingGroups && (
+              <div className="group-loader">
+                <span style={{ color: 'grey', fontSize: '13px' }}> Loading your Groups.... </span>
+                <CircularProgress />
               </div>
-            ))}
-          </div>
+            )
+          }
         </div>
       </div>
     </div>

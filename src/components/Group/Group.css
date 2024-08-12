@@ -98,9 +98,20 @@
   text-align: center;
 }
 
+.group-loader {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
 .group-list {
   flex: 1;
   padding: 0 24px;
+  overflow: scroll;
+  max-height: 580px;
 }
 
 .group-categories {

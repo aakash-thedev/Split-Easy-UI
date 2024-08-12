@@ -6,19 +6,18 @@ import { IGroup } from "../../models/Group";
 import ApiService from "../../services/ApiService";
 import CustomDropdown, { ICustomDropdownOption } from '../CustomDropdown/CustomDropdown';
 import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 import './GroupExpenses.css';
 
 const GroupExpenses: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const currentUser = JSON.parse(localStorage.getItem('user') as string);
   const [groupDetails, setGroupDetails] = useState<IGroup>();
   const [expenses, setExpenses] = useState<IExpense[]>([]);
   const [users, setUsers] = useState<ICustomDropdownOption[]>([]);
   const [showUnequalSplit, setShowUnequalSplit] = useState(false);
   const INITIAL_FORM_DATA_VALUE = {
     name: '',
-    description: '',
     amount: '',
     splitBetween: [],
     group: id,
@@ -29,7 +28,8 @@ const GroupExpenses: React.FC = () => {
   const [settleExpenseResult, setSettleExpenseResult] = useState("");
   const [loadResult, setLoadResult] = useState(false);
   const [showResultScreen, setShowResultScreen] = useState(false);
-
+  const [resetUserSelection, setResetUserSelection] = useState(false);
+  const [loadExpenses, setLoadExpenses] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -39,9 +39,11 @@ const GroupExpenses: React.FC = () => {
 
   const fetchGroupDetails = async (id: string) => {
     try {
+      setLoadExpenses(true);
       const { data } = await ApiService().client.get(`http://localhost:8080/api/groups/${id}/details`);
       setGroupDetails(data.group);
       setExpenses(data.expenses);
+      setLoadExpenses(false);
       setUsers(data.group.members);
       if (data.groupResult) {
         let result = data.groupResult;
@@ -81,6 +83,7 @@ const GroupExpenses: React.FC = () => {
       await ApiService().client.post(`http://localhost:8080/api/expenses/create`, formData);
       fetchGroupDetails(id as string);
       setFormData(INITIAL_FORM_DATA_VALUE);
+      setResetUserSelection(true);
     } catch (error) {
       console.log("Error fetching group details", error);
     }
@@ -142,42 +145,53 @@ const GroupExpenses: React.FC = () => {
       {/* EXPENSES SECTION */}
 
       <div className="expenses-section">
-        <div className="expenses-list">
-          <span className="expense-list-header">
-            <h3>Expenses</h3>
-            {expenses.length > 0 && <span
-              className="settle-expenses-button"
-              onClick={settleUpExpenses}
-            >
-              Settle Expenses
-            </span>}
-          </span>
-          {expenses.map((expense, expenseIndex) => (
-            <div key={expenseIndex} className="expense-item">
+        {!loadExpenses && (
+          <div className="expenses-list">
+            <span className="expense-list-header">
+              <h3>Expenses</h3>
+              {expenses.length > 0 && <span
+                className="settle-expenses-button"
+                onClick={settleUpExpenses}
+              >
+                Settle Expenses
+              </span>}
+            </span>
+            {expenses.map((expense, expenseIndex) => (
+              <div key={expenseIndex} className="expense-item">
 
-              <div className="expense-tile-upper-section">
-                <span className="expense-tile-name-section">
-                  <span>{expense.name}</span>
-                  <span className="expense-description">{expense.description}</span>
-                </span>
+                <div className="expense-tile-upper-section">
+                  <span className="expense-tile-name-section">
+                    <span>{expense.name}</span>
+                    <span className="expense-description">{expense.description}</span>
+                  </span>
 
-                <span className="expense-amount">
-                  <span> {expense.amount} ₹</span>
-                </span>
+                  <span className="expense-amount">
+                    <span> {expense.amount} ₹</span>
+                  </span>
+                </div>
+
+                <div className="expense-tile-lower-section">
+                  <span className="expense-paid-by">
+                    <span>Paid By:</span> {expense.paidBy.name.split(' ')[0]}
+                  </span>
+
+                  <span className="expense-split-between">
+                    <span>Split Between:</span> {expense.splitBetween.map(user => user.name.split(" ")[0]).join(', ')}
+                  </span>
+                </div>
               </div>
+            ))}
+          </div>
+        )}
 
-              <div className="expense-tile-lower-section">
-                <span className="expense-paid-by">
-                  <span>Paid By:</span> {expense.paidBy.name.split(' ')[0]}
-                </span>
-
-                <span className="expense-split-between">
-                  <span>Split Between:</span> {expense.splitBetween.map(user => user.name.split(" ")[0]).join(', ')}
-                </span>
-              </div>
+        {
+          loadExpenses && (
+            <div className="loader-screen">
+              <span style={{ color: 'grey', fontSize: '13px' }}> Loading your expenses.... </span>
+              <CircularProgress />
             </div>
-          ))}
-        </div>
+          )
+        }
 
         {!showResultScreen && !loadResult && (
           <div className="create-expense-form">
@@ -196,18 +210,12 @@ const GroupExpenses: React.FC = () => {
               value={formData.amount}
               onChange={handleFormChange}
             />
-            <input
-              type="text"
-              name="description"
-              placeholder="Additional Note ( optional )"
-              value={formData.description}
-              onChange={handleFormChange}
-            />
             <CustomDropdown
               placeholder="Split Between"
-              options={users}
+              options={users.filter((user) => user._id !== currentUser._id)}
               multipleSelect={true}
               onSelection={(selectedOptions) => setFormData({ ...formData, splitBetween: selectedOptions as never[] })}
+              resetSelection={resetUserSelection}
             />
             <div className="split-options">
               <span
@@ -239,14 +247,18 @@ const GroupExpenses: React.FC = () => {
               </div>
             )}
 
-            <button className="create-expense-button" onClick={handleCreateExpense}>Create Expense</button>
+            <button
+              className="create-expense-button"
+              onClick={handleCreateExpense}
+              disabled={formData.splitBetween.length == 0}
+            >Create Expense</button>
           </div>
         )}
 
         {
           loadResult && (
             <div className="loader-screen">
-              <span style={{ color: 'grey', fontSize: '10px' }}> AI is settling up you expenses.... </span>
+              <span style={{ color: 'grey', fontSize: '13px' }}> AI is settling up you expenses.... </span>
               <CircularProgress />
             </div>
           )
