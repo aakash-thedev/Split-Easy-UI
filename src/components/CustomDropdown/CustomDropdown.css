@@ -1,0 +1,11 @@
+.custom-dropdown {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.MuiOutlinedInput-input {
+  text-align: left;
+  font-size: 14px !important;
+  padding: 11.5px 14px !important;
+  color: grey !important;
+}

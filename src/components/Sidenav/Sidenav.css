@@ -1,0 +1,60 @@
+/* src/components/Sidenav.css */
+.sidenav {
+  width: 250px;
+  min-width: 250px;
+  background-color: #f8f9fa;
+  padding: 100px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+
+.create-group-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  /* padding: 10px 15px; */
+  margin-bottom: 30px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.create-group-btn .plus-icon {
+  margin-right: 8px;
+}
+
+.option-group {
+  margin-bottom: 30px;
+}
+
+.group-label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.group-tabs {
+  margin-left: 8px;
+  color: #495057;
+}
+
+.option-group a {
+  display: block;
+  color: #343a40;
+  text-decoration: none;
+  padding: 8px 0;
+  font-size: 16px;
+}
+
+.option-group a.active {
+  font-weight: bold;
+  color: #007bff;
+}
