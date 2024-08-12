@@ -67,3 +67,152 @@
 }
 
 /* EXPENSE SECTION CSS */
+
+.expenses-section {
+  display: flex;
+  height: 100%;
+  padding: 24px 0;
+}
+
+.expenses-list {
+  flex: 1;
+  padding: 0 24px;
+  overflow: scroll;
+  max-height: 530px;
+}
+
+
+.expense-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settle-expenses-button {
+  background-color: rgb(29, 158, 48);
+  color: white;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.expense-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  gap: 8px;
+  margin: 8px 0;
+  border-radius: 6px;
+}
+
+.expense-tile-upper-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.expense-tile-name-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.expense-description {
+  font-size: 14px;
+  color: grey;
+}
+
+.expense-tile-lower-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.create-expense-form {
+  flex: 1;
+  padding: 0 24px;
+  border-left: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 530px;
+}
+
+.loader-screen {
+  flex: 1;
+  padding: 0 24px;
+  border-left: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 451px;
+  max-width: 451px;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-screen {
+  flex: 1;
+  padding: 0 24px;
+  border-left: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 451px;
+  max-width: 451px;
+  overflow: scroll;
+  max-height: 540px;
+  font-size: 14px;
+}
+
+.split-options {
+  display: flex;
+  margin-top: 10px;
+}
+
+.split-option {
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid rgb(95, 177, 248);
+  margin-right: 10px;
+  color: rgb(95, 177, 248);
+  border-radius: 4px;
+}
+
+.split-option.selected {
+  background-color: rgb(95, 177, 248);
+  color: white;
+}
+
+.custom-amounts {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.custom-amount-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.custom-input-user-name {
+  font-size: 13px;
+  color: grey;
+}
+
+.custom-amount-item input {
+  padding: 8px 12px;
+  width: 300px;
+}
+
+.create-expense-button {
+  border-radius: 6px !important;
+  margin-top: 16px;
+  background-color: rgb(95, 177, 248);
+  border: none;
+}
