@@ -14,6 +14,6 @@ export const GROUP_CATEGORY_PROPERTIES: { [key: string]: { [key: string]: string
     backgroundColor: '#002379'
   },
   'Party': {
-    backgroundColor: '#4A249D'
+    backgroundColor: '#00499A'
   },
 }

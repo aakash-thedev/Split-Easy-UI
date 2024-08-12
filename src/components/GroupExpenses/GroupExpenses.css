@@ -11,6 +11,11 @@
   flex-direction: column;
 }
 
+.back-button {
+  cursor: pointer;
+
+}
+
 .group-title {
   font-size: 24px;
   font-weight: bold;
@@ -24,6 +29,12 @@
   border-bottom: 1px solid rgb(214, 214, 214);
 }
 
+.group-details-categories {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .group-details-header-bottom {
   padding: 12px 24px;
   width: 100%;
@@ -34,5 +45,25 @@
 }
 
 .group-details-members {
-  margin-top: 8px;
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
 }
+
+.group-details-member-heading {
+  color: grey;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.group-details-member-pill {
+  padding: 4px 10px 6px 10px;
+  background-color: rgb(95, 177, 248);
+  color: white;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+/* EXPENSE SECTION CSS */
